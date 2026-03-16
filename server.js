@@ -4,8 +4,8 @@ const https = require('https');
 const fs = require('fs');
 
 const app = express();
-const HTTP_PORT = 3000;
-const HTTPS_PORT = 443;
+const HTTP_PORT = process.env.HTTP_PORT || 3000;
+const HTTPS_PORT = process.env.HTTPS_PORT || 443;
 
 // Serve static HTML file
 app.get('/', (req, res) => {
