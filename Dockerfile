@@ -1,13 +1,11 @@
-FROM node:18-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY package*.json ./
-RUN npm install --production
+# Copy static HTML file to nginx html directory
+COPY index.html /usr/share/nginx/html/index.html
 
-COPY . .
+EXPOSE 80
 
-# App runs on port 3000 internally, map to port 80 with: docker run -p 80:3000
-EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["nginx", "-g", "daemon off;"]
