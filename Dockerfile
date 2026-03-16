@@ -7,6 +7,7 @@ RUN npm install --production
 
 COPY . .
 
-EXPOSE 80
+# App runs on port 3000 internally, map to port 80 with: docker run -p 80:3000
+EXPOSE 3000
 
 CMD ["node", "server.js"]

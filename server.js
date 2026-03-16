@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const HTTP_PORT = process.env.HTTP_PORT || 80;
+const HTTP_PORT = process.env.HTTP_PORT || 3000;
 
 // Serve static HTML file
 app.get('/', (req, res) => {
