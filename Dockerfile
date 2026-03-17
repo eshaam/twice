@@ -1,11 +1,19 @@
-FROM nginx:alpine
+FROM node:alpine
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Create app directory
+WORKDIR /app
 
-# Copy static HTML file to nginx html directory
-COPY index.html /usr/share/nginx/html/index.html
+# Copy package files
+COPY package.json package-lock.json* ./
 
-EXPOSE 80
+# Install dependencies
+RUN npm ci --only=production
 
-CMD ["nginx", "-g", "daemon off;"]
+# Copy application files
+COPY server.js index.html ./
+
+# Expose port 3000
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
