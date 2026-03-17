@@ -13,7 +13,7 @@ RUN npm install --omit=dev
 COPY server.js index.html ./
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 80
 
 # Start the application
 CMD ["npm", "start"]
